@@ -4,40 +4,47 @@ const port = 3000
 const appUrl = `http://localhost:${port}`
 
 app.get("/", (req, res) => {
-    res.json({ message: "benvenuto", })
+    res.send("Server del mio Blog")
 })
 
-app.get("/menu", (req, res) => {
+app.use(express.static("public"))
+
+app.get("/bacheca", (req, res) => {
     const menu = [{
-        name: "Ciambellone",
-        image: "public/images/ciambellone.jpeg",
-        ingredients: ["farina , uova"],
+        title: "Ciambellone",
+        content: "Dolce tipico",
+        image: "/images/ciambellone.jpeg",
+        tags: ["farina", "uova"],
     },
     {
-        name: "Cracker alla Barbabietola",
-        image: "public/images/cracker_barbabietola.jpeg",
-        ingredients: ["cracker , barbabietola"],
+        title: "Cracker alla Barbabietola",
+        content: "Una ricetta imperdibile",
+        image: "/images/cracker_barbabietola.jpeg",
+        tags: ["cracker", "barbabietola"],
     },
     {
-        name: "Pane Fritto Dolce",
-        image: "public/images/pane_fritto_dolce.jpeg",
-        ingredients: ["pane , zucchero"],
+        title: "Pane Fritto Dolce",
+        content: "Pane per golosi",
+        image: "/images/pane_fritto_dolce.jpeg",
+        tags: ["pane", "zucchero"],
     },
     {
-        name: "Pasta alla Barbabietola",
-        image: "public/images/pasta_barbabietola.jpeg",
-        ingredients: ["pasta , barbabietola"],
+        title: "Pasta alla Barbabietola",
+        content: "Un piatto sano e buono!",
+        image: "/images/pasta_barbabietola.jpeg",
+        tags: ["pasta", "barbabietola"],
     },
     {
-        name: "Torta Paesana",
-        image: "public/images/torta_paesana.jpeg",
-        ingredients: ["farina , cioccolata"],
+        title: "Torta Paesana",
+        content: "Meglio di quella della nonna",
+        image: "/images/torta_paesana.jpeg",
+        tags: ["farina", "cioccolata"],
     }]
     const responseData = {
         result: menu,
         success: true,
     }
-    res.json(menu)
+    res.json(responseData)
 })
 
 app.listen(port, () => {
